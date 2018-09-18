@@ -149,11 +149,11 @@ class Access extends React.Component {
         //console.log("clickSignin...");
         //console.log(this.$gun);
         //console.log(this.state.alias);
-        //console.log(this.state.passphase);
+        //console.log(this.state.passphrase);
         //this.props.onClick('key');
         let self = this;
         let user = this.$gun.user();
-        user.auth(this.state.alias, this.state.passphase,(ack)=>{
+        user.auth(this.state.alias, this.state.passphrase,(ack)=>{
             //console.log(ack);
             if(ack.err){
                 console.log("fail!");
@@ -167,9 +167,9 @@ class Access extends React.Component {
     //register user
     clickRegister(){
         //console.log(this.state.alias);
-        //console.log(this.state.passphase);
+        //console.log(this.state.passphrase);
         let user = this.$gun.user();
-        user.create(this.state.alias, this.state.passphase, function(ack){
+        user.create(this.state.alias, this.state.passphrase, function(ack){
             //console.log(ack);
             if(ack.err){
                 console.log("fail!");
