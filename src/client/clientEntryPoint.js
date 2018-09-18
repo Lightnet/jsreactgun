@@ -64,6 +64,9 @@ function init(){
     
     $("#loading").empty();//empty element html when finish loading javascript...
     //console.log("init?=================");
+    
+    //https://gun.eco/docs/React-Native
+    React.Component.prototype.$gun = gun;
 
     //ReactDOM.render(<App />, document.getElementById("app"));
     render(<App/>, document.getElementById('app'));//init app and render
