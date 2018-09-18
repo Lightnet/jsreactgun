@@ -9,36 +9,36 @@ class Access extends React.Component {
         this.state = {
             access:'signin',//status for render
             alias:'guest',//input variable
-            passphase:'guest',//input variable
-            aliaskooup:'',//input variable
-            question1:'',//input variable
-            question2:'',//input variable
+            passphrase:'guest',//input variable
+            aliaskooup:'guest',//input variable
+            question1:'test',//input variable
+            question2:'test',//input variable
             hint:'',//input variable
         }
     }
     //input handler
     handleChangealias(event) {
-        this.setState({alias: event.target.value})
+        this.setState({alias: event.target.value});
     }
     //input handler
     handlelookalias(event) {
-        this.setState({aliaskooup: event.target.value})
+        this.setState({aliaskooup: event.target.value});
     }
     //input handler
-    handleChangepassphase(event) {
-        this.setState({passphase: event.target.value})
+    handleChangePassphrase(event) {
+        this.setState({passphrase: event.target.value});
     }
     //input handler
     handleChangequestion1(event) {
-        this.setState({question1: event.target.value})
+        this.setState({question1: event.target.value});
     }
     //input handler
     handleChangequestion2(event) {
-        this.setState({question2: event.target.value})
+        this.setState({question2: event.target.value});
     }
     //input handler
-    handleC_hint(event) {
-        this.setState({hint: event.target.value})
+    handleChangeHint(event) {
+        this.setState({hint: event.target.value});
     }
 
     //render signin html
@@ -54,10 +54,10 @@ class Access extends React.Component {
                     </td>
                 </tr><tr>
                     <td>
-                        Passphase:
+                        Passphrase:
                     </td>
                     <td>
-                        <input value={this.state.alipassphaseas} onChange={this.handleChangepassphase.bind(this)}></input>
+                        <input value={this.state.passphrase} onChange={this.handleChangePassphrase.bind(this)}></input>
                     </td>
                 </tr><tr>
                     <td>
@@ -84,10 +84,10 @@ class Access extends React.Component {
                     </td>
                 </tr><tr>
                     <td>
-                        Passphase:
+                        Passphrase:
                     </td>
                     <td>
-                        <input value={this.state.alipassphaseas} onChange={this.handleChangepassphase.bind(this)}></input>
+                        <input value={this.state.passphrase} onChange={this.handleChangePassphrase.bind(this)}></input>
                     </td>
                 </tr><tr>
                     <td>
@@ -102,52 +102,46 @@ class Access extends React.Component {
     }
     //render forgot html
     DrawForgot(){
-        return (
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            Alias:
-                        </td>
-                        <td>
-                            <input value={this.state.aliaskooup} onChange={this.handlelookalias.bind(this)}></input>
-                        </td>
-                    </tr><tr>
-                        <td>
-                            Question 1:
-                        </td>
-                        <td>
-                            <input value={this.state.question1} onChange={this.handleChangequestion1.bind(this)}></input>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Question 2:
-                        </td>
-                        <td>
-                            <input value={this.state.question2} onChange={this.handleChangequestion2.bind(this)}></input>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Hint:
-                        </td>
-                        <td>
-                            <input value={this.state.hint} onChange={this.handleC_hint.bind(this)}></input>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        </td>
-                        <td>
-                            <button onClick={()=>this.clickSignup()}>Recover</button>
-                            <button onClick={()=>this.clickBackLogin()}>Cancel</button>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-            );
+        return (<div><table>
+            <tbody>
+                <tr>
+                    <td>
+                        Alias:
+                    </td>
+                    <td>
+                        <input value={this.state.aliaskooup} onChange={this.handlelookalias.bind(this)}></input>
+                    </td>
+                </tr><tr>
+                    <td>
+                        Question 1:
+                    </td>
+                    <td>
+                        <input value={this.state.question1} onChange={this.handleChangequestion1.bind(this)}></input>
+                    </td>
+                </tr><tr>
+                    <td>
+                        Question 2:
+                    </td>
+                    <td>
+                        <input value={this.state.question2} onChange={this.handleChangequestion2.bind(this)}></input>
+                    </td>
+                </tr><tr>
+                    <td>
+                        Hint:
+                    </td>
+                    <td>
+                        <input value={this.state.hint} onChange={this.handleChangeHint.bind(this)}></input>
+                    </td>
+                </tr><tr>
+                    <td>
+                    </td>
+                    <td>
+                        <button onClick={()=>this.clickRecover()}>Recover</button>
+                        <button onClick={()=>this.clickBackLogin()}>Cancel</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table></div>);
     }
 
     //user login
@@ -187,9 +181,12 @@ class Access extends React.Component {
                 //self.bregister = false;
             }
         });
+    }
 
+    clickRecover(){
 
     }
+
     //go to sign up
     clickSignup(){
         console.log("clickSignup...");
@@ -209,7 +206,7 @@ class Access extends React.Component {
     //render html 
     render() {
         let access = this.state.access;
-        let accessElement = this.DrawSignIn();
+        let accessElement;
         if (access == 'signin'){
             accessElement = this.DrawSignIn();
         }
