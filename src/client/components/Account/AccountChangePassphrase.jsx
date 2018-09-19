@@ -1,7 +1,5 @@
 import React from "react";
 
-//import Account from './MainIndexNav.jsx';
-
 class AccountChangePassphrase extends React.Component {
     constructor(props) {
         super(props);
@@ -20,6 +18,28 @@ class AccountChangePassphrase extends React.Component {
         this.setState({newpassphrase: event.target.value});
     }
 
+    changePassphrase(){
+        //console.log("");
+        let user = this.$gun.user();
+        //console.log(user)
+        if (user.is ==null){
+            this.$root.$emit('dialogmessage',"Alias is Null");
+            return
+        }
+        let self = this;
+        console.log(self.state.oldpassphrase);
+        console.log(self.state.newpassphrase);
+        if(!self.state.oldpassphrase || !self.state.newpassphrase){
+            console.log('empty!');
+            return;
+        }
+        user.auth(user.is.alias, self.state.oldpassphrase, (ack) => {//user auth call
+            //console.log(ack);
+            let status = ack.err || "Saved!";//check if there error else saved message.
+            console.log(status);
+        }, {change: self.state.newpassphrase});//set config to change password
+    }
+
     render() {
         return (
             <div id="changephrase">
@@ -36,7 +56,7 @@ class AccountChangePassphrase extends React.Component {
                         </tr>
                         <tr>
                             <td></td>
-                            <td><button>Change</button></td>
+                            <td><button onClick={this.changePassphrase.bind(this)}>Change</button></td>
                         </tr>
                     </tbody>
                 </table>

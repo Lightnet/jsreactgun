@@ -1,8 +1,7 @@
 import React from "react";
 
-//import Account from './MainIndexNav.jsx';
-
 class Access extends React.Component {
+
     constructor(props) {
         super(props);
         
@@ -16,6 +15,7 @@ class Access extends React.Component {
             hint:'',//input variable
         }
     }
+
     //input handler
     handleChangealias(event) {
         this.setState({alias: event.target.value});
@@ -23,6 +23,9 @@ class Access extends React.Component {
     //input handler
     handlelookalias(event) {
         this.setState({aliaskooup: event.target.value});
+        
+
+
     }
     //input handler
     handleChangePassphrase(event) {

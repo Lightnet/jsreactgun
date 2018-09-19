@@ -31,11 +31,11 @@ import 'gun/lib/load';
 import 'gun/lib/open';
 import 'gun/lib/then';
 import 'gun/lib/unset';
-//import ReactDOM from "react-dom";
 
 //var React = require('react');
-//var ReactDOM = require('react-dom');
 import React from 'react';
+//var ReactDOM = require('react-dom');
+//import ReactDOM from "react-dom";
 import {render} from 'react-dom'; //gun render instead of ReactDOM.render
 import App from "./components/App.jsx";
 
@@ -44,7 +44,7 @@ function init(){
     var SEA = Gun.SEA;
     window.SEA = SEA;
     var gun;
-    if(location.origin == 'http://localhost:3000'){
+    if(location.origin == 'http://localhost:3000'){//check for browser proxy
         gun = Gun({
             peers:['http://localhost:8080' + '/gun'],
             secure: false, //not added?
@@ -63,13 +63,14 @@ function init(){
     });
     
     $("#loading").empty();//empty element html when finish loading javascript...
-    //console.log("init?=================");
-    
+
     //https://gun.eco/docs/React-Native
     React.Component.prototype.$gun = gun;
 
     //ReactDOM.render(<App />, document.getElementById("app"));
     render(<App/>, document.getElementById('app'));//init app and render
+
+    //console.log("====Init App?====");
 }
 
 init();

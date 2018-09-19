@@ -5,6 +5,7 @@ import AccountChangePassphrase from './Account/AccountChangePassphrase.jsx';
 import AccountPassphraseHint from './Account/AccountPassphraseHint.jsx';
 
 class MainIndex extends React.Component {
+    
     constructor(props) {
         super(props);
     }

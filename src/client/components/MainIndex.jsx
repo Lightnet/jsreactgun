@@ -9,8 +9,8 @@ import GMessage from './GMessage.jsx';
 import GChat from './GChat.jsx';
 import GToDoList from './GToDoList.jsx';
 
-
 class MainIndex extends React.Component {
+    
     constructor(props) {
         super(props)
         this.state={

@@ -1,24 +1,77 @@
 import React from "react";
 
-//import Account from './MainIndexNav.jsx';
-
 class AliasProfileSearch extends React.Component {
+    
     constructor(props) {
         super(props);
         let user = this.$gun.user();
 
         this.state = {
+            publickey:'',
+            aliaskey:'',
             alias:'',
-            publickey:'xxx',
-            aliaskey:'xxx',
             born:'',
             education:'',
             skills:'',
         }
     }
 
-    handleChangePublicKey(event) {
+    async handleChangePublicKey(event) {
         this.setState({publickey: event.target.value});
+        let publickey = event.target.value;
+        if(!publickey)
+            return;
+        console.log(publickey);
+        let to = this.$gun.user(publickey);
+        //let user = this.$gun.user();
+        let who = await to.get('alias').then();
+        console.log(who);
+        if (!who){
+            this.setState({aliaskey:''});
+            this.setState({alias:''});
+            this.setState({born:''});
+            this.setState({education:''});
+            this.setState({skills:''});
+            return;
+        }
+        this.setState({aliaskey:who});
+        this.searchprofile();
+    }
+    async searchprofile(){
+        let self = this;
+        let user = this.$gun.user();
+        let find = this.$gun.user(this.state.publickey);
+        find.get('profile').on(function(data, key, at, ev){//get map data
+            //console.log(data);
+            //console.log(key);
+            ev.off(); //pervent loops listen add on?
+            Gun.node.is(data, async function(v, k){
+                //console.log(k);// variable
+                //console.log(v);// crypt
+                var key = await find.get('trust').get(user.pair().pub).get(k+'profile').then();
+                var mix = await Gun.SEA.secret(await find.get('epub').then(), user.pair());
+                key = await Gun.SEA.decrypt(key, mix);
+                var val = await Gun.SEA.decrypt(v, key);
+
+                if(k == 'alias'){
+                    let alias = val || v;
+                    self.setState({alias:alias});
+                }
+                if(k == 'born'){
+                    let born = val || v;
+                    self.setState({born:born});
+                }
+                if(k == 'education'){
+                    let education = val || v;
+                    self.setState({education:education});
+                }
+                if(k == 'skills'){
+                    let skills = val || v;
+                    self.setState({skills:skills});
+                }
+                //console.log(val);
+            });
+        });
     }
 
     handleChangeAliasKey(event) {
@@ -53,7 +106,7 @@ class AliasProfileSearch extends React.Component {
                         </tr>
                         <tr>
                             <td>Identity</td>
-                            <td><input value={this.state.aliaskey} onChange={this.handleChangeAliasKey.bind(this)}></input></td>
+                            <td><input value={this.state.aliaskey} onChange={this.handleChangeAliasKey.bind(this)} readOnly></input></td>
                         </tr>
                         <tr>
                             <td>Alias</td>

@@ -1,7 +1,5 @@
 import React from "react";
 
-//import Account from './MainIndexNav.jsx';
-
 class AccountPassphraseHint extends React.Component {
     constructor(props) {
         super(props);
@@ -12,6 +10,29 @@ class AccountPassphraseHint extends React.Component {
             question2:'',
             hint:'',
         }
+
+        this.getQuestionHint();
+    }
+
+    async getQuestionHint(){
+        console.log("get data");
+        let user = this.$gun.user();
+        let sec = await Gun.SEA.secret(user.pair().epub, user.pair());//get user for encrypt message
+
+        let question1 = await user.get('forgot').get('q1').then();
+        question1 = await Gun.SEA.decrypt(question1, sec);//encrypt hint
+        this.setState({question1:question1});
+
+        let question2 = await user.get('forgot').get('q2').then();
+        question2 = await Gun.SEA.decrypt(question2, sec);//encrypt hint
+        this.setState({question2:question2});
+
+        sec = await Gun.SEA.work(question1,question2);//encrypt key
+        let hint = await user.get('hint').then();
+        //console.log(this.hint);
+        hint = await Gun.SEA.decrypt(hint, sec);//encrypt hint
+        this.setState({hint:hint});
+
     }
 
     handleChangeQuestion1(event) {
@@ -23,7 +44,43 @@ class AccountPassphraseHint extends React.Component {
     }
 
     handleChangeHint(event) {
-        this.setState({question1: event.target.value});
+        this.setState({hint: event.target.value});
+    }
+
+    async clickChangeHint(){
+        let user = this.$gun.user();
+        let self = this;
+        console.log('Apply Hint!');
+
+        
+        let q1 = this.state.question1; //get input q1
+        let q2 = this.state.question2;//get input q2
+        let hint = this.state.hint;//get input hint
+
+        if(!q1 || !q2 || !hint){
+            console.log('empty');
+            return;
+        }
+
+        let sec = await Gun.SEA.secret(user.pair().epub, user.pair());//get user for encrypt message
+        let enc_q1 = await Gun.SEA.encrypt(q1, sec);//encrypt q1
+        user.get('forgot').get('q1').put(enc_q1);//set hash q1 to user data store
+        let enc_q2 = await Gun.SEA.encrypt(q2, sec);//encrypt q1
+        user.get('forgot').get('q2').put(enc_q2); //set hash q2 to user data store
+        sec = await Gun.SEA.work(q1,q2);//encrypt key
+        //console.log(sec);
+        
+        let enc = await Gun.SEA.encrypt(hint, sec);//encrypt hint
+        console.log(enc);
+        user.get('hint').put(enc,ack=>{//set hash hint
+            //console.log(ack);
+            if(ack.ok){
+                //displayeffectmessage('Hint Apply!'); //display message effects
+                //self.$root.$emit('dialogmessage','Hint Apply!');
+                console.log('Hint Apply!');
+            }
+        });
+        
     }
 
     render() {
@@ -46,7 +103,7 @@ class AccountPassphraseHint extends React.Component {
                         </tr>
                         <tr>
                             <td></td>
-                            <td><button>Apply</button></td>
+                            <td><button onClick={this.clickChangeHint.bind(this)}>Apply</button></td>
                         </tr>
                     </tbody>
                 </table>

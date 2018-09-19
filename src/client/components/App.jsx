@@ -5,7 +5,6 @@ import Access from './Access.jsx';
 //import {render} from 'react-dom'; //gun render instead of ReactDOM.render
 import AccountProfile from './Account/AccountProfile.jsx';
 
-
 class App extends React.Component {
 
     constructor(tick) {
@@ -15,10 +14,12 @@ class App extends React.Component {
             blogin:false
         }
     }
+
     handleClick(){
         //console.log('this is:', this);
         this.setState({blogin: true});
     }
+    
     onClick(key){
         //console.log(key);
         this.setState({blogin: true});
