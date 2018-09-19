@@ -7,6 +7,7 @@ class BasicReact extends React.Component {
         this.state = {
             statussearch:'Normal',
             chatmessage:"",
+            publickey:'',
         };
 
         this.Style_MessageBox = {
@@ -19,6 +20,27 @@ class BasicReact extends React.Component {
     //input handler
     handleChangeChatMessage(event) {
         this.setState({chatmessage: event.target.value});
+    }
+
+    async handleSearchPublicKey(event){
+        this.setState({publickey:event.target.value});
+        console.log("typing...");
+        let publickey;
+        publickey = event.target.value;
+        let to = this.$gun.user(publickey);
+        let who = await to.get('alias').then();
+        if(!who){
+            this.setState({statussearch:'No Alias!'});
+            //this.statussearch = 'No Alias!';
+            //this.bfound = false;
+            return;
+        }else{
+            this.setState({statussearch:'Found! ' + who});
+            //this.statussearch = 'Found! ' + who;
+            //this.bfound = true;
+            //this.publickey = publickey;
+            //this.alias = who;
+        }
     }
     
     render() {
@@ -37,7 +59,7 @@ class BasicReact extends React.Component {
                                 <option> </option>
                             </select>
                             Public Key:
-                            <input />
+                            <input value={this.state.publickey} onChange={this.handleSearchPublicKey.bind(this)}  />
                             <button>Add</button>
                             <button>Remove</button>
                         
