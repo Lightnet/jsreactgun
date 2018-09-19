@@ -37,11 +37,11 @@ class App extends React.Component {
             console.log("login...");
             return (
             <div>
-            <Access onClick={this.onClick.bind(this)} />
-            <button onClick={()=>this.handleClick()}>Test</button>
+                <Access onClick={this.onClick.bind(this)} />
             </div>
             );
         }
+        //<button onClick={()=>this.handleClick()}>Test</button>
     }
 }
 

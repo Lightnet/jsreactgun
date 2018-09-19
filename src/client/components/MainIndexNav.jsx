@@ -2,18 +2,26 @@ import React from "react";
 
 
 class MainIndexNav extends React.Component {
-    //constructor(props) {
-    //}
+
+    constructor(props) {
+        super(props);
+    }
+
+    clickSelectTab(key){
+        //console.log(key);
+        this.props.onClick(key);
+        //this.setState({blogin: true});
+    }
+    
     render() {
         return (
             <div>
-                <a href="#"> Home </a>
-                <a href="#"> Account </a>
-                <a href="#"> Message </a>
-                <a href="#"> Chat </a>
-                <a href="#"> To Do List </a>
-                <a href="#"> Logout </a>
-
+                <a href="#" onClick={()=>this.clickSelectTab('home')}> Home </a>
+                <a href="#" onClick={()=>this.clickSelectTab('account')}> Account </a>
+                <a href="#" onClick={()=>this.clickSelectTab('message')}> Message </a>
+                <a href="#" onClick={()=>this.clickSelectTab('chat')}> Chat </a>
+                <a href="#" onClick={()=>this.clickSelectTab('todolist')}> To Do List </a>
+                <a href="#" onClick={()=>this.clickSelectTab('logout')}> Logout </a>
             </div>
         );
     }

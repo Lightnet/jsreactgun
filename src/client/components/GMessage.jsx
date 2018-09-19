@@ -2,14 +2,14 @@ import React from "react";
 
 //import Account from './MainIndexNav.jsx';
 
-class MainIndex extends React.Component {
+class GMessage extends React.Component {
     //constructor(props) {
         //super(props);
     //}
     render() {
         return (
-            <label>Account</label>
+            <label>GMessage</label>
         );
     }
 }
-export default MainIndex;
+export default GMessage;
