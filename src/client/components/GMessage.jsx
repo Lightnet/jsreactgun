@@ -1,6 +1,6 @@
 import React from "react";
 
-//import Account from './MainIndexNav.jsx';
+import GMessageBox from './Gmessage/GMessageBox.jsx';
 
 class GMessage extends React.Component {
     //constructor(props) {
@@ -8,7 +8,10 @@ class GMessage extends React.Component {
     //}
     render() {
         return (
-            <label>GMessage</label>
+            <div>
+                <label>Message</label>
+                <GMessageBox></GMessageBox>
+            </div>
         );
     }
 }

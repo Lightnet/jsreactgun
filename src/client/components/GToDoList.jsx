@@ -8,7 +8,10 @@ class GToDoList extends React.Component {
     //}
     render() {
         return (
-            <label>GToDoList</label>
+            <div>
+                <label>ToDoList</label>
+                
+            </div>
         );
     }
 }

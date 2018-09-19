@@ -1,14 +1,21 @@
 import React from "react";
 
-//import Account from './MainIndexNav.jsx';
+import AccountProfile from './Account/AccountProfile.jsx';
+import AccountChangePassphrase from './Account/AccountChangePassphrase.jsx';
+import AccountPassphraseHint from './Account/AccountPassphraseHint.jsx';
 
 class MainIndex extends React.Component {
-    //constructor(props) {
-        //super(props);
-    //}
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
-            <label>Account</label>
+            <div>
+                <AccountProfile></AccountProfile>
+                <AccountChangePassphrase></AccountChangePassphrase>
+                <AccountPassphraseHint></AccountPassphraseHint>
+            </div>
         );
     }
 }

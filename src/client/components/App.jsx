@@ -3,6 +3,8 @@ import React from "react";
 import MainIndex from './MainIndex.jsx';
 import Access from './Access.jsx';
 //import {render} from 'react-dom'; //gun render instead of ReactDOM.render
+import AccountProfile from './Account/AccountProfile.jsx';
+
 
 class App extends React.Component {
 
@@ -12,18 +14,13 @@ class App extends React.Component {
             name:'guest',
             blogin:false
         }
-
     }
-    //var MainElement = Access;
-
     handleClick(){
-        console.log('this is:', this);
-        //this.state.blogin = true;
+        //console.log('this is:', this);
         this.setState({blogin: true});
     }
-
     onClick(key){
-        console.log(key);
+        //console.log(key);
         this.setState({blogin: true});
     }
 
@@ -35,9 +32,10 @@ class App extends React.Component {
             return (<MainIndex />);
         }else{
             console.log("login...");
+            //
             return (
             <div>
-                <Access onClick={this.onClick.bind(this)} />
+                <Access onClick={this.onClick.bind(this)} />  
             </div>
             );
         }

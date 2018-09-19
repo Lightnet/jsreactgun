@@ -50,14 +50,14 @@ class Access extends React.Component {
                         Alias:
                     </td>
                     <td>
-                        <input value={this.state.alias} onChange={this.handleChangealias.bind(this)}></input>
+                        <input value={this.state.alias} onChange={this.handleChangealias.bind(this)} />
                     </td>
                 </tr><tr>
                     <td>
                         Passphrase:
                     </td>
                     <td>
-                        <input value={this.state.passphrase} onChange={this.handleChangePassphrase.bind(this)}></input>
+                        <input value={this.state.passphrase} onChange={this.handleChangePassphrase.bind(this)} />
                     </td>
                 </tr><tr>
                     <td>
@@ -80,14 +80,14 @@ class Access extends React.Component {
                         Alias:
                     </td>
                     <td>
-                        <input value={this.state.alias} onChange={this.handleChangealias.bind(this)}></input>
+                        <input value={this.state.alias} onChange={this.handleChangealias.bind(this)} />
                     </td>
                 </tr><tr>
                     <td>
                         Passphrase:
                     </td>
                     <td>
-                        <input value={this.state.passphrase} onChange={this.handleChangePassphrase.bind(this)}></input>
+                        <input value={this.state.passphrase} onChange={this.handleChangePassphrase.bind(this)} />
                     </td>
                 </tr><tr>
                     <td>
@@ -109,28 +109,28 @@ class Access extends React.Component {
                         Alias:
                     </td>
                     <td>
-                        <input value={this.state.aliaskooup} onChange={this.handlelookalias.bind(this)}></input>
+                        <input value={this.state.aliaskooup} onChange={this.handlelookalias.bind(this)} />
                     </td>
                 </tr><tr>
                     <td>
                         Question 1:
                     </td>
                     <td>
-                        <input value={this.state.question1} onChange={this.handleChangequestion1.bind(this)}></input>
+                        <input value={this.state.question1} onChange={this.handleChangequestion1.bind(this)} />
                     </td>
                 </tr><tr>
                     <td>
                         Question 2:
                     </td>
                     <td>
-                        <input value={this.state.question2} onChange={this.handleChangequestion2.bind(this)}></input>
+                        <input value={this.state.question2} onChange={this.handleChangequestion2.bind(this)} />
                     </td>
                 </tr><tr>
                     <td>
                         Hint:
                     </td>
                     <td>
-                        <input value={this.state.hint} onChange={this.handleChangeHint.bind(this)}></input>
+                        <input value={this.state.hint} onChange={this.handleChangeHint.bind(this)} />
                     </td>
                 </tr><tr>
                     <td>

@@ -1,6 +1,6 @@
 import React from "react";
 
-//import Account from './MainIndexNav.jsx';
+import AliasProfileSearch from './Account/AliasProfileSearch.jsx';
 
 class GHome extends React.Component {
     //constructor(props) {
@@ -8,7 +8,10 @@ class GHome extends React.Component {
     //}
     render() {
         return (
-            <label> GHome Test</label>
+            <div>
+            <label>Home</label>
+            <AliasProfileSearch></AliasProfileSearch>
+            </div>
         );
     }
 }
