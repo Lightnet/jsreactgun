@@ -48,6 +48,11 @@ class MainIndex extends React.Component {
         if(pageindex == 'todolist'){
             return this.DisplayIndex(GToDoList);
         }
+        if(pageindex == 'logout'){
+            let user = this.$gun.user();
+            user.leave();
+            location.reload();
+        }
         return this.DisplayIndex(GHome);
         
     }
