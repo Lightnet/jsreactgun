@@ -1,6 +1,7 @@
 import React from "react";
 
 //import Account from './MainIndexNav.jsx';
+import $ from 'jquery';
 
 class GChatRoom extends React.Component {
     
@@ -13,8 +14,35 @@ class GChatRoom extends React.Component {
             messagelist:[],
             data: [{name: 'bob'}, {name: 'chris'}],
             chatroom:null,
+            chatboxheight:130,
+            chatmessageheight:150
         }
+        this.Style_MessageBox = {
+            //'background-color':'#aaa',
+            'overflowY':'scroll',
+        }
+
         this.setupChatRoom();
+    }
+
+    componentDidMount(){
+        console.log("mount!");
+        let $win = $(window);
+        let chatboxheight = this.state.chatboxheight;
+        let chatmessageheight = this.state.chatmessageheight;
+
+        $("#chatmessagebox").height($win.height() - this.state.chatboxheight);
+        $("#messagebox").height($win.height() - this.state.chatmessageheight);
+
+        //console.log(chatboxheight);
+        $("#chatmessagebox").height($win.height() - chatboxheight);
+        $win.on('resize',function(){
+            $("#chatmessagebox").height($win.height() - chatboxheight);
+        });
+        
+        $win.on('resize',function(){
+            $("#messagebox").height($win.height() - chatmessageheight);
+        });
     }
 
     setupChatRoom(){
@@ -32,6 +60,9 @@ class GChatRoom extends React.Component {
                 self.state.messages.push({id:id,alias:d.alias,message:d.message});
 
                 this.setState({messages: self.state.messages});//need to be update state to get list render
+
+                let element = document.getElementById("messagebox");
+                element.scrollTop = element.scrollHeight;
 
                 //self.state.messagelist = self.state.messages.map((data) =>
                     //<div>{data.message}</div>
@@ -62,10 +93,12 @@ class GChatRoom extends React.Component {
         console.log(this.state);
         return (
             <div>
-                <div>
+                 <div id="chatmessagebox">
                     Messages
+                    <div id="messagebox" style={this.Style_MessageBox}>
                     <div>
                     {this.state.messages.map(d => <li key={d.id}>{d.message}</li>)}
+                    </div>
                     </div>
                 </div>
                 <div> 

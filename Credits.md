@@ -17,6 +17,8 @@
  * https://stackoverflow.com/questions/22639534/pass-props-to-parent-component-in-react-js
  * https://reactjs.org/docs/handling-events.html
  * https://stackoverflow.com/questions/31272207/to-call-onchange-event-after-pressing-enter-key
+ * https://stackoverflow.com/questions/19014250/rerender-view-on-browser-resize-with-react
+ * https://stackoverflow.com/questions/18614301/keep-overflow-div-scrolled-to-bottom-unless-user-scrolls-up
 
  * Dialog CSS
  * https://stackoverflow.com/questions/5012111/how-to-position-a-div-in-the-middle-of-the-screen-when-the-page-is-bigger-than-t
