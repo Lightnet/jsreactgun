@@ -7,12 +7,12 @@ class Access extends React.Component {
         
         this.state = {
             access:'signin',//status for render
-            alias:'guest',//input variable
-            passphrase:'guest',//input variable
-            aliaskooup:'guest',//input variable
+            alias:'',//input variable
+            passphrase:'',//input variable
+            aliaskooup:'',//input variable
             lookpublickey:'',
-            question1:'test',//input variable
-            question2:'test',//input variable
+            question1:'',//input variable
+            question2:'',//input variable
             hint:'',//input variable
         }
     }
