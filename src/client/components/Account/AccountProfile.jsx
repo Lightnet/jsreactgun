@@ -205,7 +205,7 @@ class AccountProfile extends React.Component {
     }
 
     closeDialogPublicKeyGrant(){
-        document.getElementById("DialogGrant").style.visibility = "visible";
+        document.getElementById("DialogGrant").style.visibility = "hidden";
         console.log("close");
     }
 
@@ -219,6 +219,10 @@ class AccountProfile extends React.Component {
         console.log("checking...");
         let key = this.state.publickeygrant;
         console.log(key);
+        if(!key){
+            console.log('Empty!');
+            return;
+        }
         let to = this.$gun.user(key);
         let who = await to.get('alias').then();
         if(!who){
